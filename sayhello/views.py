@@ -1,6 +1,6 @@
 from flask import flash,redirect,url_for,render_template
 
-from sayhello import app
+from sayhello import app,db
 from sayhello.models import Message
 from sayhello.forms import HelloForm
 
@@ -16,4 +16,4 @@ def index():
         db.session.commit()
         flash('Your message have been sent to the world')
         return redirect(url_for('index'))
-    return render_template('index.html')
+    return render_template('index.html', form=form, messages=message)
